@@ -6,7 +6,6 @@ import { useState } from "react";
 import { Menu, ShoppingBag, X } from "lucide-react";
 import { useCartStore } from "@/lib/store/cartStore";
 import { logoUrl } from "@/lib/data/galleryPhotos";
-import { Button } from "@/components/ui/Button";
 
 const links = [
   { href: "/shop", label: "Shop" },
@@ -95,42 +94,45 @@ export function Navbar() {
       </div>
 
       {open && (
-        <div className="fixed inset-0 z-50 bg-shell md:hidden">
-          <div className="flex items-center justify-between border-b border-sand px-4 py-3">
+        <div
+          className="fixed inset-0 z-[100] flex flex-col bg-whitecap md:hidden"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Navigation menu"
+        >
+          <div className="flex shrink-0 items-center justify-between border-b border-sand bg-whitecap px-4 py-4 shadow-sm">
             <span className="font-display text-lg text-driftwood">Menu</span>
             <button
               type="button"
               aria-label="Close menu"
               onClick={() => setOpen(false)}
-              className="rounded-full p-2 text-driftwood"
+              className="rounded-full p-2 text-driftwood ring-1 ring-sand transition hover:bg-shell"
             >
               <X className="h-6 w-6" />
             </button>
           </div>
-          <div className="flex flex-col gap-4 p-6">
-            {links.map((l) =>
-              l.highlight ? (
-                <Button
-                  key={l.href}
-                  href={l.href}
-                  variant="primary"
-                  className="w-full justify-center"
-                  onClick={() => setOpen(false)}
-                >
-                  {l.label}
-                </Button>
-              ) : (
-                <Link
-                  key={l.href}
-                  href={l.href}
-                  className="font-body text-lg text-driftwood"
-                  onClick={() => setOpen(false)}
-                >
-                  {l.label}
-                </Link>
-              ),
-            )}
-          </div>
+          <nav
+            className="min-h-0 flex-1 overflow-y-auto bg-whitecap px-6 py-6 pb-12"
+            aria-label="Primary"
+          >
+            <ul className="flex flex-col gap-3">
+              {links.map((l) => (
+                <li key={l.href} className="shrink-0">
+                  <Link
+                    href={l.href}
+                    onClick={() => setOpen(false)}
+                    className={
+                      l.highlight
+                        ? "flex w-full items-center justify-center rounded-full bg-coral px-6 py-4 text-center font-body text-base font-semibold text-whitecap shadow-md transition hover:bg-coral/90 active:scale-[0.99]"
+                        : "flex w-full items-center justify-center rounded-2xl border border-sand bg-shell px-4 py-4 text-center font-body text-lg font-semibold text-driftwood shadow-sm transition hover:border-coral/40 hover:bg-coral/5 active:bg-coral/10"
+                    }
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
       )}
     </header>
