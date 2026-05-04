@@ -3,21 +3,43 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --shell: #e7dfd5;
+  --tide: #6f9499;
+  --aqua: #4a8890;
+  --coral: #b84a3d;
+  --seafoam: #7d9a91;
+  --sand: #c4ae94;
+  --driftwood: #4e3828;
+  --whitecap: #faf8f4;
+  --deep: #18242f;
+  --mauve: #8e6670;
+  --butter: #e3d2a6;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-shell text-driftwood font-body antialiased;
+}
+
+.sand-texture {
+  background-color: var(--shell);
+  background-image: url("/sand-noise.svg");
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-ticker {
+  animation: marquee 45s linear infinite;
+}
+
+.marquee-pause:hover .animate-marquee-ticker {
+  animation-play-state: paused;
 }
 
 @layer utilities {
