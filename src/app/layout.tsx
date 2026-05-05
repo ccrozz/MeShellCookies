@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Playfair_Display, DM_Sans, Pacifico } from "next/font/google";
 import "./globals.css";
 import { ClientShell } from "@/components/layout/ClientShell";
+import { logoUrl } from "@/lib/data/galleryPhotos";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -44,13 +45,21 @@ export const metadata: Metadata = {
       "Fresh-baked gourmet cookies & brownies. Order online, free local delivery in Brevard County.",
     images: [
       {
-        url: "https://img1.wsimg.com/isteam/ip/b2941aba-bb90-4194-869d-f744500c6e62/brownie%20with%20dome%20lid%20on%20and%20spoon.jpg",
+        url: logoUrl,
         width: 1200,
         height: 630,
+        alt: "MeShell Cookies logo",
       },
     ],
     url: "https://meshellcookies.com",
     siteName: "MeShell Cookies",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MeShell Cookies — Melt in Your Mouth Deliciousness!",
+    description:
+      "Fresh-baked gourmet cookies & brownies. Order online, free local delivery in Brevard County.",
+    images: [logoUrl],
   },
 };
 
